@@ -1,12 +1,14 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/g",
-      "destination": "/?side=groom"
+      "destination": "/",
+      "permanent": false
     },
     {
       "source": "/b",
-      "destination": "/?side=bride"
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
