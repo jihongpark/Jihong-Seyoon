@@ -643,9 +643,10 @@ window.addEventListener('load', function () {
 
 // ===== 신랑/신부 페이지 구분 =====//
 
-const path = window.location.pathname;
+const params = new URLSearchParams(window.location.search);
+const side = params.get("side");
 
-if (path === "/g") {
+if (side === "groom") {
   document.body.classList.add("groom");
 } else {
   document.body.classList.add("bride");
