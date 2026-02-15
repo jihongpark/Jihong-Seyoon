@@ -649,3 +649,7 @@ section[class*="7 account number"] {
 .viewer-nav-btn:hover {
   opacity: 0.8;
 }
+
+body.bride #groom-account {
+  display: none;
+}

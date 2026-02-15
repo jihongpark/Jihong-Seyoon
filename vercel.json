@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/g",
+      "destination": "/?side=groom"
+    },
+    {
+      "source": "/b",
+      "destination": "/?side=bride"
+    }
+  ]
+}

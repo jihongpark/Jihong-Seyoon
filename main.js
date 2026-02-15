@@ -640,3 +640,12 @@ window.addEventListener('load', function () {
     });
   }
 });
+
+const params = new URLSearchParams(window.location.search);
+const side = params.get("side");
+
+if (side === "groom") {
+  document.body.classList.add("groom");
+} else {
+  document.body.classList.add("bride");
+}
