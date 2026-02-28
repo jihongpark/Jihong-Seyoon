@@ -112,6 +112,16 @@ body {
   width: 90vw;
   max-width: 440px;
 }
+.hero-title .hero-char {
+  opacity: 0;
+}
+.hero-ready .hero-title .hero-char {
+  animation: hero-char-in 0.2s ease-out forwards;
+  animation-delay: calc(0.15s + var(--i) * 0.05s);
+}
+@keyframes hero-char-in {
+  to { opacity: 1; }
+}
 
 
 body, .container {
@@ -266,7 +276,7 @@ section[class*="5 timeline photo"] {
   margin-bottom: 0 !important;
 }
 .wedding-photo-title {
-  font-size: 20px;
+  font-size: 18px;
   color: #56321b;
   margin-bottom: 24px;
   position: relative;
@@ -274,7 +284,7 @@ section[class*="5 timeline photo"] {
   font-family: 'Plus Jakarta Sans', serif !important;
 }
 .timeline-title {
-  font-size: 20px;
+  font-size: 18px;
   color: #56321b;
   position: relative;
   z-index: 2;
@@ -299,7 +309,7 @@ section[class*="7 account number"] {
   margin-top: 0 !important;
 }
 .title {
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'noto sans kr', sans-serif !important;
   font-weight: 500;
   color: #56321b;
@@ -397,6 +407,7 @@ section[class*="7 account number"] .title {
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+  image-rendering: -webkit-optimize-contrast;
 }
 .photos img:first-child,
 .photos .photo-item:first-child {
@@ -576,11 +587,10 @@ section[class*="7 account number"] {
 .viewer-count {
   margin: 0 18px;
   color: #fff;
-  background: rgba(30,30,30,0.5);
   border-radius: 12px;
   padding: 2px 18px;
-  font-size: 1.08em;
-  font-weight: 600;
+  font-size: 1em;
+  font-weight: 300;
   font-family: 'Plus Jakarta Sans', serif !important;
 }
 

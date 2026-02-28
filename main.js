@@ -2,15 +2,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // Hero 이미지 로딩될 때까지 오버레이 유지
   const heroImg = document.querySelector('.hero-image');
   const heroLoader = document.getElementById('hero-loader');
+  function onHeroReady() {
+    heroLoader.style.opacity = 0;
+    setTimeout(() => {
+      heroLoader.style.display = 'none';
+      document.body.classList.add('hero-ready');
+    }, 350);
+  }
   if (heroImg && heroLoader) {
     if (heroImg.complete) {
-      heroLoader.style.opacity = 0;
-      setTimeout(() => heroLoader.style.display = 'none', 350);
+      onHeroReady();
     } else {
-      heroImg.addEventListener('load', () => {
-        heroLoader.style.opacity = 0;
-        setTimeout(() => heroLoader.style.display = 'none', 350);
-      });
+      heroImg.addEventListener('load', onHeroReady);
     }
   }
   // ===== 인트로 애니메이션 - 컨페티와 리본 (CodePen 코드)
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ribbonPaperCount = 24,
     ribbonPaperDist = 6.0,
     ribbonPaperThick = 2.0,
-    confettiPaperCount = 40,
+    confettiPaperCount = 0,
     DEG_TO_RAD = PI / 180,
     RAD_TO_DEG = 180 / PI,
     colors = [
