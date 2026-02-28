@@ -5,11 +5,10 @@
 }
 
 @font-face {
-  font-family: 'monaco';
-  src: url('/fonts/Monaco.woff2') format('woff2');
+  font-family: 'plus jakarta sans';
+  src: url('/fonts/PlusJakartaSans-VariableFont_wght.woff2') format('woff2');
   font-display: swap;
 }
-
 
 body {
   font-family: 'noto sans kr', sans-serif;
@@ -120,7 +119,7 @@ body, .container {
 }
 
 .hero-date, .hero-names, .timeline-title, .btn, .english-title, .parents-ampersand,.desc-eng, .eng, .photos .eng, .family .english-title .wedding-photo-title{
-  font-family: 'monaco', serif !important;
+  font-family: 'plus jakarta sans', serif !important;
 }
 .timeline-bg-text{
   font-family: 'Lily Script One', cursive !important;
@@ -272,14 +271,14 @@ section[class*="5 timeline photo"] {
   margin-bottom: 24px;
   position: relative;
   z-index: 2;
-  font-family: 'monaco', serif !important;
+  font-family: 'Plus Jakarta Sans', serif !important;
 }
 .timeline-title {
   font-size: 20px;
   color: #56321b;
   position: relative;
   z-index: 2;
-  font-family: 'monaco', serif !important;
+  font-family: 'Plus Jakarta Sans', serif !important;
 }
 .timeline-subtitle{
   font-size: 16px;
@@ -289,7 +288,7 @@ section[class*="5 timeline photo"] {
   padding-left: 32px;
   position: relative;
   z-index: 2;
-  font-family: 'monaco', serif !important;
+  font-family: 'Plus Jakarta Sans', serif !important;
 
 }
 .timeline-title{padding-left: 32px;}
@@ -519,7 +518,7 @@ section[class*="7 account number"] .title {
 }
 .account-number {
   flex: 1;
-  font-family: 'monaco', 'noto sans kr' !important;
+  font-family: 'Plus Jakarta Sans', 'noto sans kr' !important;
 }
 .copy-account {
   cursor: pointer;
@@ -582,7 +581,7 @@ section[class*="7 account number"] {
   padding: 2px 18px;
   font-size: 1.08em;
   font-weight: 600;
-  font-family: 'monaco', serif !important;
+  font-family: 'Plus Jakarta Sans', serif !important;
 }
 
 .viewer-nav-btn {
