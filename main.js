@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Hero 이미지 로딩될 때까지 오버레이 유지
+  // 히어로 이미지 로딩되면 로딩 화면 해제 (최대 3.5초)
   const heroImg = document.querySelector('.hero-image');
   const heroLoader = document.getElementById('hero-loader');
   const hideLoader = () => {
@@ -8,9 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => { heroLoader.style.display = 'none'; }, 350);
   };
   if (heroImg && heroLoader) {
-    if (heroImg.complete) {
-      hideLoader();
-    } else {
+    if (heroImg.complete) hideLoader();
+    else {
       heroImg.addEventListener('load', hideLoader);
       setTimeout(hideLoader, 3500);
     }

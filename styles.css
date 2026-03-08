@@ -443,7 +443,6 @@ section[class*="7 account number"] .title {
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
-  image-rendering: -webkit-optimize-contrast;
 }
 .photos img:first-child,
 .photos .photo-item:first-child {
