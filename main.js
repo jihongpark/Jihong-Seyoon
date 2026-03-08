@@ -463,13 +463,20 @@ const closeBtn = document.getElementById('close-image-viewer');
 const prevBtn = document.getElementById('prev-image');
 const nextBtn = document.getElementById('next-image');
 let currentIndex = 0;
+let savedScrollY = 0;
 
 function showViewer(idx) {
     if (!viewer || !viewerImage) return;
+    savedScrollY = window.scrollY || window.pageYOffset;
     currentIndex = idx;
     viewerImage.src = images[idx].src;
     viewer.style.display = 'flex';
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${savedScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
     // 이미지 번호/전체 표시 업데이트
     const viewerCount = document.getElementById('viewer-count');
     if (viewerCount) {
@@ -490,7 +497,13 @@ function showViewer(idx) {
 function hideViewer() {
     if (!viewer) return;
     viewer.style.display = 'none';
+    document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, savedScrollY);
 }
 function showPrev() {
     if (currentIndex > 0) showViewer(currentIndex - 1);
@@ -518,22 +531,30 @@ if (nextBtn) nextBtn.addEventListener('click', showNext);
 
 // 전체화면 이미지 뷰어에서 스와이프 동작(좌우 이동)
 if (viewer) {
-    let startX = null;
+    let startX = null, startY = null;
     let deltaX = 0;
-    let threshold = 40; // 넘김 인식 최소 px
+    let threshold = 40;
     viewer.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) startX = e.touches[0].clientX;
-    });
+        if (e.touches.length === 1) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        }
+    }, { passive: true });
     viewer.addEventListener('touchmove', (e) => {
-        if (startX !== null) deltaX = e.touches[0].clientX - startX;
-    });
-    viewer.addEventListener('touchend', (e) => {
+        if (startX !== null && e.touches.length === 1) {
+            const dx = Math.abs(e.touches[0].clientX - startX);
+            const dy = Math.abs(e.touches[0].clientY - startY);
+            if (dy > dx) e.preventDefault();
+            else deltaX = e.touches[0].clientX - startX;
+        }
+    }, { passive: false });
+    viewer.addEventListener('touchend', () => {
         if (startX !== null) {
             if (deltaX > threshold) { showPrev(); }
             else if (deltaX < -threshold) { showNext(); }
         }
-        startX = null; deltaX = 0;
-    });
+        startX = null; startY = null; deltaX = 0;
+    }, { passive: true });
 
     // [추가] 전체화면 뷰어 클릭 시 좌/우측 영역 판별하여 페이지 이동
     if (viewerImage) {

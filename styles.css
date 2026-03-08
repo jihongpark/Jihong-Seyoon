@@ -78,7 +78,7 @@ body {
  
 
 .main-mobile-container {
-  max-width: 640px;
+  max-width: 600px;
   width: 100%;
   margin: 0 auto;
   background: #f5dbc3;
@@ -596,15 +596,18 @@ section[class*="7 account number"] {
 .image-viewer {
   display: none;
   position: fixed;
-  left: 0;
-  top: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 2000;
   background: rgba(0, 0, 0, 0.95);
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  overflow: hidden;
+  touch-action: pan-x;
+  overscroll-behavior: none;
 }
 .viewer-image {
   width: 100%;
