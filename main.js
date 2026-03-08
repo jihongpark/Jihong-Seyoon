@@ -1,19 +1,16 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // 히어로 이미지 로딩되면 로딩 화면 해제 (최대 3.5초)
-  const heroImg = document.querySelector('.hero-image');
+(function () {
   const heroLoader = document.getElementById('hero-loader');
   const hideLoader = () => {
     if (!heroLoader) return;
-    heroLoader.style.opacity = 0;
-    setTimeout(() => { heroLoader.style.display = 'none'; }, 350);
+    heroLoader.style.opacity = '0';
+    heroLoader.style.transition = 'opacity 0.35s';
+    setTimeout(() => { heroLoader.style.display = 'none'; }, 400);
   };
-  if (heroImg && heroLoader) {
-    if (heroImg.complete) hideLoader();
-    else {
-      heroImg.addEventListener('load', hideLoader);
-      setTimeout(hideLoader, 3500);
-    }
-  }
+  window.addEventListener('load', hideLoader);
+  setTimeout(hideLoader, 6000);
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
   // ===== 인트로 애니메이션 - 컨페티와 리본 (CodePen 코드)
   var retina = window.devicePixelRatio,
       PI = Math.PI,
