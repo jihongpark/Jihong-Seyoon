@@ -2,15 +2,17 @@ document.addEventListener('DOMContentLoaded', function () {
   // Hero 이미지 로딩될 때까지 오버레이 유지
   const heroImg = document.querySelector('.hero-image');
   const heroLoader = document.getElementById('hero-loader');
+  const hideLoader = () => {
+    if (!heroLoader) return;
+    heroLoader.style.opacity = 0;
+    setTimeout(() => { heroLoader.style.display = 'none'; }, 350);
+  };
   if (heroImg && heroLoader) {
     if (heroImg.complete) {
-      heroLoader.style.opacity = 0;
-      setTimeout(() => heroLoader.style.display = 'none', 350);
+      hideLoader();
     } else {
-      heroImg.addEventListener('load', () => {
-        heroLoader.style.opacity = 0;
-        setTimeout(() => heroLoader.style.display = 'none', 350);
-      });
+      heroImg.addEventListener('load', hideLoader);
+      setTimeout(hideLoader, 3500);
     }
   }
   // ===== 인트로 애니메이션 - 컨페티와 리본 (CodePen 코드)
@@ -499,7 +501,14 @@ function showNext() {
     if (currentIndex < images.length - 1) showViewer(currentIndex + 1);
 }
 images.forEach((img, idx) => {
-    img.addEventListener('click', () => showViewer(idx));
+    img.addEventListener('click', (e) => {
+      const pc = document.querySelector('.photos');
+      if (pc && pc.dataset.wasDragging === '1') {
+        delete pc.dataset.wasDragging;
+        return;
+      }
+      showViewer(idx);
+    });
 });
 if (closeBtn) closeBtn.addEventListener('click', hideViewer);
 if (prevBtn) prevBtn.addEventListener('click', showPrev);
@@ -610,12 +619,16 @@ window.addEventListener('load', function () {
     });
 
     // --- PC 마우스 드래그 스크롤 기능 추가 ---
+    carousel.querySelectorAll('img').forEach(img => {
+      img.draggable = false;
+      img.addEventListener('dragstart', (e) => e.preventDefault());
+    });
     let isDrag = false;
     let startX, startScrollLeft;
 
     carousel.addEventListener('mousedown', (e) => {
-      // 마우스 왼쪽 버튼만 동작
       if (e.button !== 0) return;
+      e.preventDefault();
       isDrag = true;
       carousel.classList.add('dragging');
       startX = e.pageX;
@@ -638,6 +651,41 @@ window.addEventListener('load', function () {
       carousel.classList.remove('dragging');
       document.body.style.userSelect = '';
     });
+  }
+
+  // --- 웨딩 포토(.photos) PC 마우스 드래그 스크롤 ---
+  const photosCarousel = document.querySelector('.photos');
+  if (photosCarousel) {
+    photosCarousel.querySelectorAll('img').forEach(img => {
+      img.draggable = false;
+      img.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+    let photosDrag = false;
+    let photosStartX, photosStartScrollLeft;
+    photosCarousel.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      photosDrag = true;
+      photosCarousel.classList.add('dragging');
+      photosStartX = e.pageX;
+      photosStartScrollLeft = photosCarousel.scrollLeft;
+      document.body.style.userSelect = 'none';
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!photosDrag) return;
+      e.preventDefault();
+      const walk = e.pageX - photosStartX;
+      if (Math.abs(walk) > 5) photosCarousel.dataset.wasDragging = '1';
+      photosCarousel.scrollLeft = photosStartScrollLeft - walk;
+    });
+    const photosMouseUp = () => {
+      if (!photosDrag) return;
+      photosDrag = false;
+      photosCarousel.classList.remove('dragging');
+      document.body.style.userSelect = '';
+    };
+    window.addEventListener('mouseup', photosMouseUp);
+    window.addEventListener('mouseleave', photosMouseUp);
   }
 });
 

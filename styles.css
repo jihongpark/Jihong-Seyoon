@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans&display=swap);
+
 @font-face {
   font-family: 'high summit';
   src: url('/fonts/HighSummit.woff2') format('woff2');
@@ -21,29 +23,57 @@ body {
   position: fixed;
   z-index: 9999;
   top: 0;
-  left: 50%;
+  left: 0;
   width: 100vw;
-  min-width: 480px;
-  max-width: 480px;
   height: 100vh;
-  background: #fff;
+  background: #EDDDC9;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 1;
   transition: opacity 0.3s;
-  transform: translateX(-50%);
 }
 
-.hero-loader .spinner {
-  width: 48px; height: 48px;
-  border: 5px solid #ffa04c;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.hero-loader .loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #EDDDC9;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
+.hero-loader .loading-text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+}
+.hero-loader .loading-text span {
+  display: inline-block;
+  margin: 0 5px;
+  color: #FF8418;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+.hero-loader .loading-text span:nth-child(1) { filter: blur(0px); animation: blur-text 1.5s 0s infinite linear alternate; }
+.hero-loader .loading-text span:nth-child(2) { filter: blur(0px); animation: blur-text 1.5s 0.2s infinite linear alternate; }
+.hero-loader .loading-text span:nth-child(3) { filter: blur(0px); animation: blur-text 1.5s 0.4s infinite linear alternate; }
+.hero-loader .loading-text span:nth-child(4) { filter: blur(0px); animation: blur-text 1.5s 0.6s infinite linear alternate; }
+.hero-loader .loading-text span:nth-child(5) { filter: blur(0px); animation: blur-text 1.5s 0.8s infinite linear alternate; }
+.hero-loader .loading-text span:nth-child(6) { filter: blur(0px); animation: blur-text 1.5s 1s infinite linear alternate; }
+.hero-loader .loading-text span:nth-child(7) { filter: blur(0px); animation: blur-text 1.5s 1.2s infinite linear alternate; }
+@keyframes blur-text {
+  0% { filter: blur(0px); }
+  100% { filter: blur(4px); }
 }
  
 
@@ -335,21 +365,30 @@ section[class*="7 account number"] .title {
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-  touch-action: pan-x;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
   gap: 16px;
   margin-bottom: 8px;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  cursor: grab;
 }
+.photos.dragging, .photos.dragging * { cursor: grabbing !important; }
+.photos.dragging {
+  scroll-behavior: auto !important;
+  scroll-snap-type: none !important;
+}
+.photos.dragging .photo-item { scroll-snap-align: none !important; }
 
 .timeline-images {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
   overflow-y: hidden;
-  touch-action: pan-x;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
   gap: 16px;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: auto !important;
@@ -360,6 +399,10 @@ section[class*="7 account number"] .title {
 }
 .timeline-images * { cursor: grab; }
 .timeline-images.dragging, .timeline-images.dragging * { cursor: grabbing !important; }
+.timeline-images.dragging {
+  scroll-snap-type: none !important;
+}
+.timeline-images.dragging img { scroll-snap-align: none !important; }
 
 .timeline-images img {
   width: 208px;
