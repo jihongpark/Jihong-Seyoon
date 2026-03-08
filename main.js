@@ -472,6 +472,7 @@ function showViewer(idx) {
     currentIndex = idx;
     viewerImage.src = images[idx].src;
     viewer.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
     // 이미지 번호/전체 표시 업데이트
     const viewerCount = document.getElementById('viewer-count');
     if (viewerCount) {
@@ -492,6 +493,7 @@ function showViewer(idx) {
 function hideViewer() {
     if (!viewer) return;
     viewer.style.display = 'none';
+    document.body.style.overflow = '';
 }
 function showPrev() {
     if (currentIndex > 0) showViewer(currentIndex - 1);
