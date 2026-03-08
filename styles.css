@@ -170,6 +170,7 @@ body, .container {
   line-height: 1;
 }
 .hero-place {
+  display: none;
   position: absolute;
   top: 28px;
   right: 28px;
@@ -178,6 +179,9 @@ body, .container {
   opacity: 0.7;
   text-align: right;
   line-height: 1.2;
+}
+body.groom .hero-place {
+  display: block;
 }
 .hero-names {
   position: absolute;
