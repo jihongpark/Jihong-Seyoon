@@ -11,6 +11,11 @@
   src: url('/fonts/OpenSans-VariableFont_wdth\,wght.woff2') format('woff2');
   font-display: swap;
 }
+@font-face {
+  font-family: 'Oooh baby';
+  src: url('/fonts/OoohBaby-Regular.woff2') format('woff2');
+  font-display: swap;
+}
 
 body {
   font-family: 'noto sans kr', sans-serif;
@@ -147,11 +152,11 @@ body, .container {
   font-family: 'noto sans kr', sans-serif;
 }
 
-.hero-date, .hero-names, .timeline-title, .btn, .english-title, .parents-ampersand,.desc-eng, .eng, .photos .eng, .family .english-title .wedding-photo-title{
+.hero-date, .hero-names, .btn, .english-title, .parents-ampersand,.desc-eng, .eng, .photos .eng, .family .english-title {
   font-family: 'open sans', 'noto sans kr', serif !important;
 }
-.timeline-bg-text{
-  font-family: 'Lily Script One', cursive !important;
+.wedding-photo-title, .timeline-title, .timeline-subtitle {
+  font-family: 'high summit', 'noto sans kr', serif !important;
 }
 
 .parents-label, .parents-name, .title, .account-number {
@@ -310,29 +315,29 @@ section[class*="5 timeline photo"] {
   margin-bottom: 0 !important;
 }
 .wedding-photo-title {
-  font-size: 18px;
+  font-size: 22px;
   color: #56321b;
   margin-bottom: 24px;
   position: relative;
   z-index: 2;
-  font-family: 'open sans', serif !important;
+  font-family: 'Oooh Baby', serif !important;
 }
 .timeline-title {
-  font-size: 18px;
+  font-size: 22px;
   color: #56321b;
   position: relative;
   z-index: 2;
-  font-family: 'open sans', serif !important;
+  font-family: 'Oooh Baby', serif !important;
 }
 .timeline-subtitle{
-  font-size: 16px;
+  font-size: 18px;
   color: #56321b;
   opacity: 0.6;
   margin-top: 4px;
   padding-left: 32px;
   position: relative;
   z-index: 2;
-  font-family: 'open sans', serif !important;
+  font-family: 'Oooh Baby', serif !important;
 
 }
 .timeline-title{padding-left: 32px;}
